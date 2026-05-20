@@ -41,6 +41,15 @@ class CategoryController {
     });
   }
 
+  async viewCategory(req, res) {
+    const allCategory = await CategoryModel.find({});
+    return res.status(200).json({
+      status: true,
+      message: "Category fetch successfully",
+      data: allCategory,
+    });
+  }
+
   async updateCategory(req, res) {
     const existingUser = await UserModel.findOne({ email: req?.user?.email });
     if (!existingUser) {

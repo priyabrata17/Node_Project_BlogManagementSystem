@@ -9,6 +9,7 @@ router.post(
   authCheck,
   wrapAsync(categoryController.createCategory),
 );
+router.get("/all-category", wrapAsync(categoryController.viewCategory));
 router.patch(
   "/update/category/:categoryId",
   authCheck,

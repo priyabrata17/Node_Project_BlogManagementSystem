@@ -21,4 +21,6 @@ router.patch(
   wrapAsync(userController.logout),
 );
 
+router.get("/auth/dashboard", authCheck, wrapAsync(userController.dashboard));
+
 module.exports = router;

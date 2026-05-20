@@ -100,7 +100,6 @@ class UserController {
     });
   }
 
-
   //change Profile pic
   async updateProfilePic(req, res) {
     const existingUser = await UserModel.findOne({ email: req.user.email });
@@ -125,6 +124,26 @@ class UserController {
     return res.status(200).json({
       status: true,
       message: "Profile pic updated successfully",
+    });
+  }
+
+  async dashboard(req, res) {
+    const existingUser = await UserModel.findOne({ email: req?.user?.email });
+    if (!existingUser) {
+      return res.status(404).json({
+        status: false,
+        message: "No user found !!",
+      });
+    }
+
+    return res.status(200).json({
+      status: true,
+      message: "Data fetch successfully",
+      data: {
+        fullname: existingUser.fullname,
+        email: existingUser.email,
+        image: existingUser.image,
+      },
     });
   }
 }
